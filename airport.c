@@ -281,7 +281,17 @@ int cmpByLincolnDistance(const void* a, const void* b) {
  * given array of Airport structures.
  */
 void generateReports(Airport *airports, int n) {
+  int i;
+  int size = n;
+  printf("Airports:\n");
+  for (i=0; i<size; i++) {
+    printf("%s\n", airportToString(airports[i]));
+  }
+  printf("\n%s\n", "Sorted lists:");
 
+  for (i=0; i<size; i++) {
+    printf("%s\n", );
+  }
 
 
 
