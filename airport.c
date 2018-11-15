@@ -9,6 +9,13 @@ typedef struct {
   char* countryAbbrv;
 } Airport;
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+
+#include "airport.h"
+
 /**
  * A factory function to create a new Airport with the given
  * attributes.  This function should make *deep* copies of each
@@ -161,43 +168,88 @@ double getEstimatedTravelTime(const Airport* stops,
  * A comparator function that orders the two Airport structures by
  * their GPS IDs in lexicographic order.
  */
-int cmpByGPSId(const void* a, const void* b);
+int cmpByGPSId(const void* a, const void* b) {
+  const Airport *t1 = (const Airport*)s1;
+  const Airport *t2 = (const Airport*)s2;
+  if (t1->gpsid > t2->gpsid) {
+    return 1;
+  } else if (t1->gpsid < t2->gpsid) {
+    return -1;
+  } else {
+    return 0;
+  }
+}
 
 /**
  * A comparator function that orders the two Airport structures by
  * their type.
  */
-int cmpByType(const void* a, const void* b);
+int cmpByType(const void* a, const void* b) {
+  const Airport *t1 = (const Airport*)s1;
+  const Airport *t2 = (const Airport*)s2;
+  return strcmp(t1->type, t2->type);
+
+}
 
 /**
  * A comparator function that orders the two Airport structures by
  * their name in lexicographic order.
  */
-int cmpByName(const void* a, const void* b);
+int cmpByName(const void* a, const void* b) {
+  const Airport *t1 = (const Airport*)s1;
+  const Airport *t2 = (const Airport*)s2;
+  return strcmp(t1->name, t2->name);
+}
 
 /**
  * A comparator function that orders the two Airport structures by
  * their name in reverse lexicographic order.
  */
-int cmpByNameDesc(const void* a, const void* b);
-
+int cmpByNameDesc(const void* a, const void* b) {
+  const Aiprot *t1 = (const Aiprot*)s1;
+  const Aiprot *t2 = (const Aiprot*)s2;
+  return -(strcmp(t1->name, t2->name));
+}
 /**
  * A comparator function that orders the two Airport structures first by
  * country, then by city
  */
-int cmpByCountryCity(const void* a, const void* b);
+int cmpByCountryCity(const void* a, const void* b) {
+  const Airpot *t1 = (const Aiport*)s1;
+  const Aiport *t2 = (const Airpot*)s2;
+  return -(strcmp(t1->city));
+}
 
 /**
  * A comparator function that orders the given Airport structures
  * by their latitudes north to south
  */
-int cmpByLatitude(const void* a, const void* b);
-
+int cmpByLatitude(const void* a, const void* b) {
+  const Aiport  *t1 = (const Airport*)s1;
+  const Aiport *t2 = (const Airport*)s2;
+  if (t1->latitude > t2->latitude) {
+    return 1;
+  } else if (t1->latitude < t2->latitude) {
+    return -1;
+  } else {
+    return 0;
+  }
+}
 /**
  * A comparator function that orders the given Airport structures
  * by their longitudes west to east
  */
-int cmpByLongitude(const void* a, const void* b);
+int cmpByLongitude(const void* a, const void* b) {
+  const Aiport *t1 = (const Airport*)s1;
+  const Aiport *t2 = (const Airport*)s2;
+  if (t1->longitude > t2->longitude) {
+    return 1;
+  } else if (t1->longitude < t2->longitude) {
+    return -1;
+  } else {
+    return 0;
+  }
+}
 
 /**
  * A comparator function that orders the two Airport structures by
@@ -205,10 +257,22 @@ int cmpByLongitude(const void* a, const void* b);
  * (0R2, 40.846176, -96.75471)
  * in ascending order according (closest to Lincoln would come first)
  */
-int cmpByLincolnDistance(const void* a, const void* b);
+int cmpByLincolnDistance(const void* a, const void* b) {
+  const Aiport *t1 = (const Aiprot*)s1;
+  const Aiprot *t2 = (const Aiprot*)s2;
+  createAirport()
+  getAirDistance()
+}
 
 /**
  * A function that generates and prints several reports on the
  * given array of Airport structures.
  */
-void generateReports(Airport *airports, int n);
+void generateReports(Airport *airports, int n) {
+
+
+
+
+
+
+}

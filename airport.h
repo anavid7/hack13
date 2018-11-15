@@ -1,5 +1,12 @@
 typedef struct {
-  //TODO: use your definition here
+  char* gpsId;
+  char* type;
+  char* name;
+  double latitude;
+  double longitude;
+  int elevationFeet;
+  char* city;
+  char* countryAbbrv;
 } Airport;
 
 /**
