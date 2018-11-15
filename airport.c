@@ -217,7 +217,11 @@ int cmpByNameDesc(const void* a, const void* b) {
 int cmpByCountryCity(const void* a, const void* b) {
   const Airpot *t1 = (const Aiport*)s1;
   const Aiport *t2 = (const Airpot*)s2;
-  return -(strcmp(t1->city));
+  if (strcmp(t1->country, t2->country) == 0) {
+    return strcmp(t1->city, t2->city);
+  } else {
+    return strcmp(t1->country, t2->country);
+  }
 }
 
 /**
@@ -261,11 +265,11 @@ int cmpByLincolnDistance(const void* a, const void* b) {
   const Aiport *t1 = (const Aiprot*)s1;
   const Aiprot *t2 = (const Aiprot*)s2;
   Airport* lincolnAirport = createAirport("LNK", "sml", "Lincoln Municipal Airport", 40.846176, -96.75471, 1219, "Lincoln, Nebraska", "USA");
-  double cow = getAirDistance(lincolnAirport, t1);
+  double cows = getAirDistance(lincolnAirport, t1);
   double chickens = getAirDistance(linclonAiport, t2);
-  if (cow > chickens) {
+  if (cows > chickens) {
     return 1;
-  } else if (cow < chickens) {
+  } else if (cows < chickens) {
     return -1;
   } else {
     return 0;
