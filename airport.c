@@ -260,8 +260,16 @@ int cmpByLongitude(const void* a, const void* b) {
 int cmpByLincolnDistance(const void* a, const void* b) {
   const Aiport *t1 = (const Aiprot*)s1;
   const Aiprot *t2 = (const Aiprot*)s2;
-  createAirport()
-  getAirDistance()
+  Airport* lincolnAirport = createAirport("LNK", "sml", "Lincoln Municipal Airport", 40.846176, -96.75471, 1219, "Lincoln, Nebraska", "USA");
+  double cow = getAirDistance(lincolnAirport, t1);
+  double chickens = getAirDistance(linclonAiport, t2);
+  if (cow > chickens) {
+    return 1;
+  } else if (cow < chickens) {
+    return -1;
+  } else {
+    return 0;
+  }
 }
 
 /**
