@@ -1,14 +1,3 @@
-typedef struct {
-  char* gpsId;
-  char* type;
-  char* name;
-  double latitude;
-  double longitude;
-  int elevationFeet;
-  char* city;
-  char* countryAbbrv;
-} Airport;
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -206,8 +195,8 @@ int cmpByName(const void* a, const void* b) {
  * their name in reverse lexicographic order.
  */
 int cmpByNameDesc(const void* a, const void* b) {
-  const Aiprot *t1 = (const Aiprot*)s1;
-  const Aiprot *t2 = (const Aiprot*)s2;
+  const Airport *t1 = (const Airport*)s1;
+  const Airport *t2 = (const Airport*)s2;
   return -(strcmp(t1->name, t2->name));
 }
 /**
@@ -262,8 +251,8 @@ int cmpByLongitude(const void* a, const void* b) {
  * in ascending order according (closest to Lincoln would come first)
  */
 int cmpByLincolnDistance(const void* a, const void* b) {
-  const Aiport *t1 = (const Aiprot*)s1;
-  const Aiprot *t2 = (const Aiprot*)s2;
+  const Aiport *t1 = (const Airport*)s1;
+  const Airport *t2 = (const Airport*)s2;
   Airport* lincolnAirport = createAirport("LNK", "sml", "Lincoln Municipal Airport", 40.846176, -96.75471, 1219, "Lincoln, Nebraska", "USA");
   double cows = getAirDistance(lincolnAirport, t1);
   double chickens = getAirDistance(linclonAiport, t2);
@@ -276,25 +265,89 @@ int cmpByLincolnDistance(const void* a, const void* b) {
   }
 }
 
+
 /**
  * A function that generates and prints several reports on the
  * given array of Airport structures.
  */
 void generateReports(Airport *airports, int n) {
   int i;
-  int size = n;
+  int size = sizeof(Airport);
   printf("Airports:\n");
-  for (i=0; i<size; i++) {
+  for (i=0; i<n; i++) {
     printf("%s\n", airportToString(airports[i]));
   }
   printf("\n%s\n", "Sorted lists:");
+  printf("%s\n", "Sort by GPS ID:");
+  qsort(airports, n, size, cmpByGPSId);
+  for (i=0; i<n; i++) {
+    printf("%s\n", airportToString(airports[i]));
+  }
+  printf("\n%s\n", "Sort by Type:");
+  qsort(airports, n, size, cmpByType);
+  for (i=0; i<n; i++) {
+    printf("%s\n", airportToString(airports[i]));
+  }
+  printf("\n%s\n", "Sort by Name:");
+  qsort(airports, n, size, cmpByName);
+  for (i=0; i<n; i++) {
+    printf("%s\n", airportToString(airports[i]));
+  }
+  printf("\n%s\n", "Sort by Name descending:");
+  qsort(airports, n, size, cmpByNameDesc);
+  for (i=0; i<n; i++) {
+    printf("%s\n", airportToString(airports[i]));
+  }
+  printf("\n%s\n", "Sort by Country & City:");
+  qsort(airports, n, size, cmpByCountryCity);
+  for (i=0; i<n; i++) {
+    printf("%s\n", airportToString(airports[i]));
+  }
+  printf("\n%s\n", "Sort by Latitude:");
+  qsort(airports, n, size, cmpByLatitude);
+  for (i=0; i<n; i++) {
+    printf("%s\n", airportToString(airports[i]));
+  }
+  printf("\n%s\n", "Sort by Longitude:");
+  qsort(airports, n, size, cmpByLongitude);
+  for (i=0; i<n; i++) {
+    printf("%s\n", airportToString(airports[i]));
+  }
+  printf("\n%s\n", "Sort by distance from Lincoln");
+  qsort(airports, n, size, cmpByLincolnDistance);
+  for (i=0; i<n; i++) {
+    printf("%s\n", airportToString(airports[i]));
+  }
+  printf("\nThe closest airport to Lincoln is: %s\n", airportToString(airports[0]));
 
-  for (i=0; i<size; i++) {
-    printf("%s\n", );
+  qsort(airports, n, size, cmpByLongitude);
+  printf("The median airport in terms of Longitude is: %s\n", airportToString(airports[(n/2)]));
+
+  for(i=0; i<n; i++) {
+   if (airports[i].city == "New York") {
+     printf("New York Aiprot exits at indici: %d\n", i);
+     printf("%s\n", airportToString(airports[i]));
+   } else if (i = n-1) {
+     printf("New York is not inside of this list\n");
+   }
   }
 
+  for(i=0; i<n; i++) {
+    if (airports[i].countryAbbrv == "CA") {
+      printf("A Canadian airport exits at indici: %d\n", i);
+      printf("%s\n", airportToString(airports[i]));
+    } else if (i = n-1) {
+      printf("There is no Cnadian Airport in this list\n");
+    }
+  }
 
-
-
+  for(i=0; i<n; i++) {
+    if (airports[i].type == "large_airport") {
+      printf("A larg airport exits at indici: %d\n", i);
+      printf("%s\n", airportToString(airports[i]));
+    } else if (i = n-1) {
+      printf("There is no larg airport in this list\n");
+    }
+  }
 
 }
